@@ -1,3 +1,5 @@
+/* After a lot of back and forth, this has been achieved.  */ 
+
 
 window.fbAsyncInit = function() {
   FB.init({
@@ -17,7 +19,9 @@ window.fbAsyncInit = function() {
         // Insert your code here
         if (response && !response.error) {
           console.log ("success");
-          console.log (JSON.stringify(response));
+          var res = JSON.stringify(response);
+          console.log (res);
+          $('<li></li>').text(res).appendTo('ul#dreams');
         }
         else {
           console.log ("failure"); 
