@@ -10,18 +10,27 @@ window.fbAsyncInit = function() {
   FB.AppEvents.logPageView();
 
   FB.getLoginStatus(function(response){
-    fbApiInit = true;
+    // fbApiInit = true;
+    if (response.status === 'connected') {
+      console.log('Logged in.');
+    }
+    else {
+      FB.login({scope: 'user_friends,user_likes,email'});
+    }
+    
     FB.api(
       '/me',  // 10152759836492400
       'GET',
-      {"fields":"id,name, friends"},
+      {"fields":"id,name,email,friends,likes"},
       function(response) {
         // Insert your code here
         if (response && !response.error) {
           console.log ("success");
           var res = JSON.stringify(response);
           console.log (res);
-          $('<li></li>').text(res).appendTo('ul#dreams');
+          var likes = response.likes.data;
+          for (var i=0; i < likes.length; i++)
+            $('<li></li>').text(JSON.stringify(likes[i])).appendTo('ul#dreams');
         }
         else {
           console.log ("failure"); 
