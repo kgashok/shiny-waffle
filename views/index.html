@@ -24,18 +24,14 @@
         A Dream of the Future
       </h1>
     </header>
-    
-    <fb:login-button autologoutlink="true" onlogin="OnRequestPermission();">  
-    </fb:login-button>
 
+    <fb:login-button scope="public_profile,user_friends" autologoutlink="true" onlogin="OnRequestPermission();">  
+    </fb:login-button>
+    
+    <div id="fb-root"></div>
 
     <main>
-      <div
-        class="fb-like"
-        data-share="true"
-        data-width="450"
-        data-show-faces="true">
-      </div>
+      
       <p class="bold">Oh hi,</p>
       <p>Tell me your hopes and dreams:</p>
       <form>
@@ -47,6 +43,13 @@
         </ul>
       </section>
     </main>
+
+    <div
+      class="fb-like"
+      data-share="true"
+      data-width="450"
+      data-show-faces="true">
+    </div>
 
     <footer>
       <a href="https://hyperdev.com">
