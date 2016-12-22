@@ -1,27 +1,18 @@
-Welcome to the HyperDev BETA
+A REST client using Unirest for Q and A services 
 ============================
 
-Click `"Show"` in the header to see your app live. Updates to your code will instantly deploy and update live.
+On the back-end  
+================
+Unirest JS framework for powerful yet simple API calls
 
-HyperDev is a developer playground that lets you code a real web-app without the slow setup and deployment steps. 
+On the front-end  
+================
+The usual. `client.js` has most of the skunk works. 
 
-[About HyperDev](https://hyperdev.com/about)
+### log output 
 
-
-Your Project
-------------
-
-On the back-end,
-- your app starts at `server.js`
-- add frameworks and packages in `package.json`
-- safely store app secrets in `.env`
-
-On the front-end,
-- edit `client.js`, `style.css` and `index.html`
-- drag in `assets`, like images or music, to add them to your project
-
-
-Made by Fog Creek
------------------
-
-\ ゜o゜)ノ
+    /qnamaker/v1.0/knowledgebases/b693c8be-313c-434d-b3a7-dad2d4656039/generateAnswer {"question":"Is linked list non-linear? "}
+    
+    **Answer**: According to Access strategies Linked list is a linear one. According to Storage Linked List is a Non-linear one.
+    
+    confidence: 99
