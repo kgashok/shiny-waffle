@@ -28,6 +28,8 @@ window.fbAsyncInit = function() {
           console.log ("success");
           var res = JSON.stringify(response);
           console.log (res);
+          $('<h2></h2>').text(response.name).appendTo('ul#whoami');
+          $('<h3></h3>').text(response.email).appendTo('ul#whoami');
           var likes = response.likes.data;
           for (var i=0; i < likes.length; i++)
             $('<li></li>').text(JSON.stringify(likes[i])).appendTo('ul#dreams');

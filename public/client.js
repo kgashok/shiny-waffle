@@ -16,6 +16,8 @@ $(function() {
   });
 
   $('form').submit(function(event) {
+    console.log('hello world :o');
+
     event.preventDefault();
     dream = $('input').val();
     $.post('/dreams?' + $.param({dream: dream}), function() {
