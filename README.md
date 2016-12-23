@@ -1,15 +1,15 @@
-A REST client using Unirest for Q and A services 
+A Javascript REST client consuming Microsoft Cognitive Q&A Service 
 ============================
 
 On the back-end  
 ================
-Unirest JS framework for powerful yet simple API calls
+Unirest JS framework for simplified HTTP calls to the knowledge base.
 
 On the front-end  
 ================
 The usual. `client.js` has most of the skunk works. 
 
-### log output 
+# Log Output 
 
     /qnamaker/v1.0/knowledgebases/b693c8be-313c-434d-b3a7-dad2d4656039/generateAnswer {"question":"Is linked list non-linear? "}
     

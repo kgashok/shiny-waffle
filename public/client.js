@@ -7,21 +7,19 @@
 
 
 $(function() {
-  console.log('hello world :o');
-  
-  $.get('/dreams', function(dreams) {
-    dreams.forEach(function(dream) {
+
+  $.get('/questions', function(questions) {
+    questions.forEach(function(question) {
       $('<li></li>').text(dream).appendTo('ul#dreams');
     });
   });
 
   $('form').submit(function(event) {
-    console.log('hello world :o');
 
     event.preventDefault();
-    dream = $('input').val();
-    $.post('/dreams?' + $.param({dream: dream}), function() {
-      $('<li></li>').text(dream).appendTo('ul#dreams');
+    question = $('input').val();
+    $.post('/questions?' + $.param({question: question}), function() {
+      $('<li></li>').text(question).appendTo('ul#dreams');
       $('input').val('');
       $('input').focus();
     });

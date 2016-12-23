@@ -6,17 +6,14 @@ var rest = require('unirest');
     //foo is now loaded.
 });*/
 
-function getHTML(url, next) {
-  var unirest = require('unirest');
-  unirest.get(url)
-    .end(function(response) {
-      var body = response.body;
-      if (next) next(body);
-    });
-}
-
-
+/*
+ * STEP 1 : Setup the URL to point at the Microsoft Q&A service
+ * STEP 2 : Build the query 
+ * STEP 3 : Make the Unirest POST call
+ * 
+ */
 function getAnswer (query, callback) {
+  // STEP 1 
   var qnamakerUriBase = "https://westus.api.cognitive.microsoft.com/qnamaker/v1.0";
   var knowledgebaseId = "b693c8be-313c-434d-b3a7-dad2d4656039";
   var builder = qnamakerUriBase + "/knowledgebases/" + knowledgebaseId + "/generateAnswer";
@@ -28,10 +25,12 @@ function getAnswer (query, callback) {
       "cache-control": "no-cache",
   };
   
+  // STEP 2
   //var payload = "{\"question\":\"Why bother with hashing?\"}";
   //var payload = {"question": "What is hashing?"};
   var payload = {"question": query};
 
+  // STEP 3
   rest.post(builder)
     .headers(headers)
     .send(payload)
@@ -41,12 +40,7 @@ function getAnswer (query, callback) {
       else 
         console.log(response.body);
     });
-  
 }
-
-//getHTML('http://purple.com/', function(html) {
-//  console.log(html);
-//});
 
 
 // init project
@@ -64,32 +58,30 @@ app.get("/", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
 
-app.get("/dreams", function (request, response) {
-  response.send(dreams);
+app.get("/questions", function (request, response) {
+  response.send(questions);
 });
 
 // could also use the POST body instead of query string: http://expressjs.com/en/api.html#req.body
-app.post("/dreams", function (request, response) {
+app.post("/questions", function (request, response) {
   //dreams.push(request.query.dream);
-  console.log (response); 
-  var entry;
-  getAnswer(request.query.dream, function (resp) {
+  getAnswer(request.query.question, function (resp) {
     console.log(resp.request.path, resp.request.body); 
     console.log(resp.body.answer);
     console.log("confidence: " + resp.body.score);
-    request.query.dream += ":("+ resp.body.score +"%) " + resp.body.answer
-    dreams.push(request.query.dream);
-    console.log(dreams);
+    request.query.question += ":("+ resp.body.score +"%) " + resp.body.answer
+    questions.push(request.query.question);
+    console.log(questions);
   });
   //response.send(request.query.dream + ":("+ resp.body.score +")" + resp.body.answer);
   response.sendStatus(200);
 });
 
 // Simple in-memory store for now
-var dreams = [
-  "Find and count some sheep",
-  "Climb a really tall mountain",
-  "Wash the dishes"
+var questions = [
+  "What is a data structure?",
+  "What is a linked list?",
+  "Is linked list non-linear?"
   ];
 
 
@@ -98,3 +90,17 @@ var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
 
+/*
+function getHTML(url, next) {
+  var unirest = require('unirest');
+  unirest.get(url)
+    .end(function(response) {
+      var body = response.body;
+      if (next) next(body);
+    });
+}
+
+getHTML('http://purple.com/', function(html) {
+  console.log(html);
+});
+*/
