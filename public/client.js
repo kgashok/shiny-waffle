@@ -8,8 +8,8 @@
 
 $(function() {
 
-  $.get('/questions', function(questions) {
-    questions.forEach(function(question) {
+  $.get('/questions', function(dreams) {
+    dreams.forEach(function(dream) {
       $('<li></li>').text(dream).appendTo('ul#dreams');
     });
   });
@@ -17,9 +17,9 @@ $(function() {
   $('form').submit(function(event) {
 
     event.preventDefault();
-    question = $('input').val();
-    $.post('/questions?' + $.param({question: question}), function() {
-      $('<li></li>').text(question).appendTo('ul#dreams');
+    dream = $('input').val();
+    $.post('/questions?' + $.param({dream: dream}), function() {
+      $('<li></li>').text(dream).appendTo('ul#dreams');
       $('input').val('');
       $('input').focus();
     });
