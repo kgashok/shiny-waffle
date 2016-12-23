@@ -5,7 +5,6 @@
 // add other scripts at the bottom of index.html
 
 
-
 $(function() {
 
   $.get('/questions', function(questions) {
@@ -20,10 +19,15 @@ $(function() {
     question = $('input').val();
     if (question.length === 0) return;
     $.post('/questions?' + $.param({question: question}), function() {
-      $('<li></li>').text(question).prependTo('ul#questions');
-      $('input').val('');
-      $('input').focus();
-    });
-  });
-
+      //$('<li></li>').text(question).prependTo('ul#questions');
+      
+      window.setTimeout(function(){
+        location = location; 
+        //location.reload(true);
+        $('input').val('');
+        $('input').focus();
+      },1500);
+    }); // end of post call
+  }); // end of submit call
+  
 });
