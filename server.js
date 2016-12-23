@@ -70,7 +70,7 @@ app.post("/questions", function (request, response) {
     console.log(resp.body.answer);
     console.log("confidence: " + resp.body.score);
     request.query.question += ":("+ resp.body.score +"%) " + resp.body.answer
-    questions.push(request.query.question);
+    questions.unshift(request.query.question);
     console.log(questions);
   });
   //response.send(request.query.dream + ":("+ resp.body.score +")" + resp.body.answer);
