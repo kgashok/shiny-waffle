@@ -16,3 +16,10 @@ The usual. `client.js` has most of the skunk works.
     **Answer**: According to Access strategies Linked list is a linear one. According to Storage Linked List is a Non-linear one.
     
     confidence: 99
+    
+## Things that helped 
+
+- http://stackoverflow.com/questions/28008393/how-to-make-a-https-request-in-node-js
+- http://stackoverflow.com/questions/38008042/returned-unirest-response-in-node-js-is-undefined
+- http://textsummarization.net/text-summarization-api-for-nodejs
+- https://gomix.com/#!/project/therapeutic-cattle (the 12th exercise of the Node.js tutorial)
