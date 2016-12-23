@@ -13,9 +13,12 @@ body {
   margin: 25px;
 }
 
+li { background: white; }
+li:nth-child(odd) { background: silver; }
+
 h1 {
   font-weight: bold;
-  color: pink;
+  color: red;
 }
 
 .bold {
