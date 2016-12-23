@@ -19,6 +19,7 @@ The usual. `client.js` has most of the skunk works.
     
 ## Things that helped 
 
+- http://unirest.io/nodejs.html#request
 - http://stackoverflow.com/questions/28008393/how-to-make-a-https-request-in-node-js
 - http://stackoverflow.com/questions/38008042/returned-unirest-response-in-node-js-is-undefined
 - http://textsummarization.net/text-summarization-api-for-nodejs
