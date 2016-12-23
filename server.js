@@ -65,14 +65,12 @@ app.get("/questions", function (request, response) {
 // could also use the POST body instead of query string: http://expressjs.com/en/api.html#req.body
 app.post("/questions", function (request, response) {
   //dreams.push(request.query.dream);
-  console.log (response); 
-  var entry;
-  getAnswer(request.query.dream, function (resp) {
+  getAnswer(request.query.question, function (resp) {
     console.log(resp.request.path, resp.request.body); 
     console.log(resp.body.answer);
     console.log("confidence: " + resp.body.score);
-    request.query.dream += ":("+ resp.body.score +"%) " + resp.body.answer
-    questions.push(request.query.dream);
+    request.query.question += ":("+ resp.body.score +"%) " + resp.body.answer
+    questions.push(request.query.question);
     console.log(questions);
   });
   //response.send(request.query.dream + ":("+ resp.body.score +")" + resp.body.answer);
