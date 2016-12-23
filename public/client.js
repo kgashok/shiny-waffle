@@ -19,7 +19,7 @@ $(function() {
     event.preventDefault();
     question = $('input').val();
     $.post('/questions?' + $.param({question: question}), function() {
-      $('<li></li>').text(question).appendTo('ul#questions');
+      $('<li></li>').text(question).prependTo('ul#questions');
       $('input').val('');
       $('input').focus();
     });

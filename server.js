@@ -10,7 +10,6 @@ var rest = require('unirest');
  * STEP 1 : Setup the URL to point at the Microsoft Q&A service
  * STEP 2 : Build the query 
  * STEP 3 : Make the Unirest POST call
- * 
  */
 function getAnswer (query, callback) {
   // STEP 1 
