@@ -18,6 +18,7 @@ $(function() {
 
     event.preventDefault();
     question = $('input').val();
+    if (question.length === 0) return;
     $.post('/questions?' + $.param({question: question}), function() {
       $('<li></li>').text(question).prependTo('ul#questions');
       $('input').val('');
