@@ -18,7 +18,7 @@ li:nth-child(odd) { background: silver; }
 
 h1 {
   font-weight: bold;
-  color: red;
+  color: darkorange;
 }
 
 .bold {
