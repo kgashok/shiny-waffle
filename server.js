@@ -21,7 +21,7 @@ function getAnswer (query, callback) {
   if (query.kid === "")
     query.kid = "cse"; 
   
-  var kbase = lookup[query.kid];
+  var kbase = lookup[query.kid.toLowerCase()];
 
   // STEP 1 
   var qnamakerUriBase = "https://westus.api.cognitive.microsoft.com/qnamaker/v1.0";
