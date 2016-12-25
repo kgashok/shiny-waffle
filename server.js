@@ -11,10 +11,25 @@ var rest = require('unirest');
  * STEP 2 : Build the query 
  * STEP 3 : Make the Unirest POST call
  */
+var lookup = {
+  "cse": "8c59a93f-1622-4ce3-b848-dcc56f10f2b0",
+  "ds" : "b693c8be-313c-434d-b3a7-dad2d4656039",
+  "cpp": "ed3f0ded-b71e-43ff-93c6-a34454702b64"
+}
+
 function getAnswer (query, callback) {
+  if (query.kid === "")
+    query.kid = "cse"; 
+  
+  var kbase = lookup[query.kid];
+
   // STEP 1 
   var qnamakerUriBase = "https://westus.api.cognitive.microsoft.com/qnamaker/v1.0";
-  var knowledgebaseId = "b693c8be-313c-434d-b3a7-dad2d4656039";
+  var knowledgebaseId = kbase;
+  //var knowledgebaseId = "ed3f0ded-b71e-43ff-93c6-a34454702b64";  // c++ faq
+  //var knowledgebaseId = "8c59a93f-1622-4ce3-b848-dcc56f10f2b0";  // comp science FAQActivity Log Clear 
+
+  //var knowledgebaseId = "b693c8be-313c-434d-b3a7-dad2d4656039"; // data structure FAQ
   var builder = qnamakerUriBase + "/knowledgebases/" + knowledgebaseId + "/generateAnswer";
   
   var qnamakerSubscriptionKey = "a6fbd18b9b2e45b59f2ce4f73a56e1e4";
@@ -27,13 +42,14 @@ function getAnswer (query, callback) {
   // STEP 2
   //var payload = "{\"question\":\"Why bother with hashing?\"}";
   //var payload = {"question": "What is hashing?"};
-  var payload = {"question": query};
+  var payload = {"question": query.question};
 
   // STEP 3
   rest.post(builder)
     .headers(headers)
     .send(payload)
     .end(function (response) {
+      console.log (response);
       if (callback) 
         callback(response);
       else 
@@ -64,7 +80,9 @@ app.get("/questions", function (request, response) {
 // could also use the POST body instead of query string: http://expressjs.com/en/api.html#req.body
 app.post("/questions", function (request, response) {
   //dreams.push(request.query.dream);
-  getAnswer(request.query.question, function (resp) {
+  console.log(" POST:::" + request.query.question + " // " + request.query.kid); 
+  
+  getAnswer(request.query, function (resp) {
     console.log(resp.request.path, resp.request.body); 
     console.log(resp.body.answer);
     console.log("confidence: " + resp.body.score);

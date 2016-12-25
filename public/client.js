@@ -6,7 +6,6 @@
 
 
 $(function() {
-
   $.get('/questions', function(questions) {
     questions.forEach(function(question) {
       $('<li></li>').text(question).appendTo('ul#questions');
@@ -15,19 +14,28 @@ $(function() {
 
   $('form').submit(function(event) {
 
+
+    console.log ("Inside submit");
     event.preventDefault();
-    question = $('input').val();
+    question = $("#query").val();
     if (question.length === 0) return;
-    $.post('/questions?' + $.param({question: question}), function() {
+    kid = $("#kid").val();
+    args = {"question": {"question":question, "kid": kid} }; 
+
+    // $.post('/questions?' + $.param({question: question}) + $.param({kid: kid}), function() {
+    $.post('/questions?' + $.param({"question": question, "kid": kid}),  function() {
       //$('<li></li>').text(question).prependTo('ul#questions');
       
       window.setTimeout(function(){
         location = location; 
         //location.reload(true);
-        $('input').val('');
-        $('input').focus();
+        //$('input').val('');
+        $("#query").val('');
+        $("#query").focus();
       },1500);
+      
     }); // end of post call
+
   }); // end of submit call
   
 });
