@@ -49,7 +49,6 @@ function getAnswer (query, callback) {
     .headers(headers)
     .send(payload)
     .end(function (response) {
-      console.log (response);
       if (callback) 
         callback(response);
       else 

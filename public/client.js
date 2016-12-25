@@ -20,10 +20,9 @@ $(function() {
     question = $("#query").val();
     if (question.length === 0) return;
     kid = $("#kid").val();
-    args = {"question": {"question":question, "kid": kid} }; 
+    args = {"question": question, "kid": kid}; 
 
-    // $.post('/questions?' + $.param({question: question}) + $.param({kid: kid}), function() {
-    $.post('/questions?' + $.param({"question": question, "kid": kid}),  function() {
+    $.post('/questions?' + $.param(args),  function() {
       //$('<li></li>').text(question).prependTo('ul#questions');
       
       window.setTimeout(function(){
