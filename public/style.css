@@ -4,6 +4,12 @@
 /* You might want to try something fancier: */
 /* less: http://lesscss.org/ */
 
+body {
+    background-color: beige;
+    //background-image: url("http://blog-imgs-92.fc2.com/s/l/o/slorakusyou/hate.jpg");
+}
+
+
 * {
   box-sizing: border-box;
 }
