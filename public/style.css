@@ -4,9 +4,27 @@
 /* You might want to try something fancier: */
 /* less: http://lesscss.org/ */
 
+/*
+.module {
+  margin: 10px;
+  width: 600px;
+  height: 800px;
+  float: left;
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/shoes.jpg);
+  background-size: cover;
+}
+.darken {
+  background-image: 
+    linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ),
+    url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/shoes.jpg);
+}
+*/
 body {
     background-color: beige;
-    //background-image: url("http://blog-imgs-92.fc2.com/s/l/o/slorakusyou/hate.jpg");
+    /*background-image: url("http://blog-imgs-92.fc2.com/s/l/o/slorakusyou/hate.jpg");*/
 }
 
 
