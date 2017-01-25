@@ -14,17 +14,14 @@ $(function() {
 
   $('form').submit(function(event) {
 
-
     console.log ("Inside submit");
     event.preventDefault();
-    question = $("#query").val();
+    var question = $("#query").val();
     if (question.length === 0) return;
-    kid = $("#kid").val();
-    args = {"question": question, "kid": kid}; 
+    var kid = $("#kid").val();
+    var args = {"question": question, "kid": kid}; 
 
     $.post('/questions?' + $.param(args),  function() {
-      //$('<li></li>').text(question).prependTo('ul#questions');
-      
       window.setTimeout(function(){
         location = location; 
         //location.reload(true);
