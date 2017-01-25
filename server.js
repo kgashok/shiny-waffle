@@ -17,19 +17,14 @@ var lookup = {
   "cpp": "ed3f0ded-b71e-43ff-93c6-a34454702b64"
 }
 
-function getAnswer (query, callback) {
+function getAnswer (query, callbackFromPOST) {
   if (query.kid === "")
     query.kid = "cse"; 
   
-  var kbase = lookup[query.kid.toLowerCase()];
-
   // STEP 1 
+  var kbase = lookup[query.kid.toLowerCase()];
   var qnamakerUriBase = "https://westus.api.cognitive.microsoft.com/qnamaker/v1.0";
   var knowledgebaseId = kbase;
-  //var knowledgebaseId = "ed3f0ded-b71e-43ff-93c6-a34454702b64";  // c++ faq
-  //var knowledgebaseId = "8c59a93f-1622-4ce3-b848-dcc56f10f2b0";  // comp science FAQActivity Log Clear 
-
-  //var knowledgebaseId = "b693c8be-313c-434d-b3a7-dad2d4656039"; // data structure FAQ
   var builder = qnamakerUriBase + "/knowledgebases/" + knowledgebaseId + "/generateAnswer";
   
   var qnamakerSubscriptionKey = "a6fbd18b9b2e45b59f2ce4f73a56e1e4";
@@ -48,11 +43,11 @@ function getAnswer (query, callback) {
   rest.post(builder)
     .headers(headers)
     .send(payload)
-    .end(function (response) {
-      if (callback) 
-        callback(response);
-      else 
-        console.log(response.body);
+    .end(function calledAfterQandA (responseFromQandA) {  
+      if (callbackFromPOST)  // Was a callback function specified? 
+        callbackFromPOST(responseFromQandA);
+      else  // otherwise send the response to the console 
+        console.log(responseFromQandA.body);
     });
 }
 
