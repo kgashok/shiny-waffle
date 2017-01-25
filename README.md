@@ -24,3 +24,12 @@ The usual. `client.js` has most of the skunk works.
 - http://stackoverflow.com/questions/38008042/returned-unirest-response-in-node-js-is-undefined
 - http://textsummarization.net/text-summarization-api-for-nodejs
 - https://gomix.com/#!/project/therapeutic-cattle (the 12th exercise of the Node.js tutorial)
+
+## Source Code 
+
+A PDF file is available [here](https://cdn.gomix.com/31b3ba94-5f90-45e1-b1e9-54c3dbe89412%2FquestionsJSCode.pdf)
+
+## Elm and JS mix
+
+Also take a look at http://j.mp/elmJSMix 
+

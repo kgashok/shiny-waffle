@@ -17,7 +17,7 @@ var lookup = {
   "cpp": "ed3f0ded-b71e-43ff-93c6-a34454702b64"
 }
 
-function getAnswer (query, callbackFromPOST) {
+function getAnswer (query, funcToInvokeAfterUnirestPOST) {
   if (query.kid === "")
     query.kid = "cse"; 
   
@@ -43,9 +43,9 @@ function getAnswer (query, callbackFromPOST) {
   rest.post(builder)
     .headers(headers)
     .send(payload)
-    .end(function calledAfterQandA (responseFromQandA) {  
-      if (callbackFromPOST)  // Was a callback function specified? 
-        callbackFromPOST(responseFromQandA);
+    .end(function funcToInvokeAfterQandA (responseFromQandA) {  
+      if (funcToInvokeAfterUnirestPOST)  // Was a callback function specified? 
+        funcToInvokeAfterUnirestPOST(responseFromQandA);
       else  // otherwise send the response to the console 
         console.log(responseFromQandA.body);
     });
@@ -67,29 +67,30 @@ app.get("/", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
 
-app.get("/questions", function (request, response) {
-  response.send(questions);
+app.get("/responses", function (request, response) {
+  response.send(respondList);
 });
 
 // could also use the POST body instead of query string: http://expressjs.com/en/api.html#req.body
-app.post("/questions", function (request, response) {
+app.post("/responses", function (request, response) {
   //dreams.push(request.query.dream);
   console.log(" POST:::" + request.query.question + " // " + request.query.kid); 
   
-  getAnswer(request.query, function (resp) {
+  getAnswer(request.query, function funcToInvokeAfterUnirestPOST(resp) {
     console.log(resp.request.path, resp.request.body); 
     console.log(resp.body.answer);
     console.log("confidence: " + resp.body.score);
-    request.query.question += ":("+ resp.body.score +"%) " + resp.body.answer
-    questions.unshift(request.query.question);
-    console.log(questions);
+    var responseQA = request.query.question + ":("+ resp.body.score +"%) " 
+      + resp.body.answer;
+    respondList.unshift(responseQA);
+    console.log(respondList);
   });
   //response.send(request.query.dream + ":("+ resp.body.score +")" + resp.body.answer);
   response.sendStatus(200);
 });
 
 // Simple in-memory store for now
-var questions = [
+var respondList = [
   "What is a data structure?",
   "What is a linked list?",
   "Is linked list non-linear?"

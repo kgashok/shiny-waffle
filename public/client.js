@@ -8,13 +8,13 @@ $(function() {
 
   // This is invoked to refresh previously asked 
   // questions, if any? 
-  $.get('/questions', function funcInvokedAfterGET(questions) {
-    // for e.g. https://roomy-plate.gomix.me/questions
+  $.get('/responses', function funcInvokedAfterGET(responses) {
+    // for e.g. https://roomy-plate.gomix.me/responses
     // refresh and update the DOM with 
     // previous Q and As from the same session
     // along with any valid ones post the POST request
-    questions.forEach(function(question) {
-      $('<li></li>').text(question).appendTo('ul#questions');
+    responses.forEach(function(response) {
+      $('<li></li>').text(response).appendTo('ul#responses');
     });
   });
 
@@ -33,10 +33,10 @@ $(function() {
     if (question.length === 0)
       return;
     var args = {"question": question, "kid": kid};
-    var fullRoute = "/questions?" + $.param(args); 
+    var fullRoute = "/responses?" + $.param(args); 
     // console.log (fullRoute);
     // for e.g.
-    //   https://roomy-plate.gomix.me/questions?questions=algorithm&kid=cse
+    //   https://roomy-plate.gomix.me/response?questions=algorithm&kid=cse
     
     // prepare the POST request to the server
     $.post(fullRoute, function funcInvokedAfterPOST() {
