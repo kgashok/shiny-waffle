@@ -3,7 +3,8 @@ A Javascript REST client consuming Microsoft Cognitive Q&A Service
 
 On the back-end  
 ================
-Unirest JS framework for simplified HTTP calls to the knowledge base.
+ - Unirest JS framework for simplified REST API calls to the knowledge base.
+ - Express JS framework for basic routing of HTTP requests
 
 On the front-end  
 ================
@@ -27,7 +28,9 @@ The usual. `client.js` has most of the skunk works.
 
 ## Source Code 
 
-A PDF file is available [here](https://cdn.gomix.com/31b3ba94-5f90-45e1-b1e9-54c3dbe89412%2FquestionsJSCode.pdf)
+A PDF file is available [here](https://cdn.gomix.com/31b3ba94-5f90-45e1-b1e9-54c3dbe89412%2FquestionsJSCode.pdf).
+
+The corresponding markdown file is available [here](https://cdn.gomix.com/31b3ba94-5f90-45e1-b1e9-54c3dbe89412%2FquestionsKGJSCode.md).
 
 ## Elm and JS mix
 
