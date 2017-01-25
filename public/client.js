@@ -9,7 +9,7 @@ $(function() {
   // This is invoked to refresh previously asked 
   // questions, if any? 
   $.get('/questions', function funcInvokedAfterGET(questions) {
-    
+    // for e.g. https://roomy-plate.gomix.me/questions
     // refresh and update the DOM with 
     // previous Q and As from the same session
     // along with any valid ones post the POST request
@@ -33,9 +33,13 @@ $(function() {
     if (question.length === 0)
       return;
     var args = {"question": question, "kid": kid};
+    var fullRoute = "/questions?" + $.param(args); 
+    // console.log (fullRoute);
+    // for e.g.
+    //   https://roomy-plate.gomix.me/questions?questions=algorithm&kid=cse
     
     // prepare the POST request to the server
-    $.post('/questions?' + $.param(args), function funcInvokedAfterPOST() {
+    $.post(fullRoute, function funcInvokedAfterPOST() {
       // this is the callback function which gets
       // called after the server is done serving the request
       // Before we can "refresh" to get the results,
