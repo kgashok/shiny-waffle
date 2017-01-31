@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="/style.css">
   </head>
   <body>
-    <div class="module darken"></div>
+    
     <header>
       <h1>
         Questions, questions galore. 
@@ -48,9 +48,10 @@
         <label> Knowledge base</label>
         <input id="kid"   type="text" maxlength="100" placeholder="cse">
         <label> Question</label>
-        <input id="query" type="text" maxlength="100" placeholder="Queries!">
+        <input id="query" type="text" maxlength="100" value="algorithms" placeholder="Queries!">
         <button type="submit">Get Answer!</button>
       </form>
+      <button type="submit" onclick="clearTheBox()">Reset (on the server!)</button>
       <p>
           <a href="https://github.com/kgashok/shiny-waffle/issues/new" target="_">Want to give App feedback? </a>
           or is it an <a href="https://github.com/kgashok/shiny-waffle/issues/8" target="_">incorrect response?</a>

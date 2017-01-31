@@ -74,9 +74,11 @@ app.get("/responses", function (request, response) {
 // could also use the POST body instead of query string: http://expressjs.com/en/api.html#req.body
 app.post("/responses", function (request, response) {
   //dreams.push(request.query.dream);
+  //console.log (response); 
   console.log(" POST:::" + request.query.question + " // " + request.query.kid); 
-  
+
   getAnswer(request.query, function funcToInvokeAfterUnirestPOST(resp) {
+    // console.log (resp.request); 
     console.log(resp.request.path, resp.request.body); 
     console.log(resp.body.answer);
     console.log("confidence: " + resp.body.score);
@@ -84,9 +86,13 @@ app.post("/responses", function (request, response) {
       + resp.body.answer;
     respondList.unshift(responseQA);
     console.log(respondList);
+    // response.send(request.query.dream + ":("+ resp.body.score +")" + resp.body.answer);
+    //response.send(resp.request.path + " :("+ resp.body.score +")" + resp.body.answer);
+    // response.send ("junk");
+  
   });
-  //response.send(request.query.dream + ":("+ resp.body.score +")" + resp.body.answer);
-  response.sendStatus(200);
+  //response.sendStatus(200);
+  response.send(respondList[respondList.length-1]);
 });
 
 // Simple in-memory store for now

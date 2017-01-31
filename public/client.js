@@ -4,6 +4,11 @@
 // by default, you've got jQuery,
 // add other scripts at the bottom of index.html
 
+function clearTheBox () { 
+  console.log ("inside clear the box!");
+  $("ul#responses").empty(); 
+}
+
 $(function() {
 
   // This is invoked to refresh previously asked 
@@ -13,10 +18,17 @@ $(function() {
     // refresh and update the DOM with 
     // previous Q and As from the same session
     // along with any valid ones post the POST request
-    responses.forEach(function(response) {
-      $('<li></li>').text(response).appendTo('ul#responses');
-    });
+    if ($('ul#responses').is(':empty') ){
+        
+      responses.forEach(function(response) {
+        $('<li></li>').text(response).appendTo('ul#responses');
+      });
+    }
+    else {
+       $('<li></li>').text(responses[0]).appendTo('ul#responses');
+    }
   });
+
 
   // This is invoked when the question has been entered 
   // and the "Get Answer!" button is clicked
@@ -39,18 +51,26 @@ $(function() {
     //   https://roomy-plate.gomix.me/response?questions=algorithm&kid=cse
     
     // prepare the POST request to the server
-    $.post(fullRoute, function funcInvokedAfterPOST() {
+    $.post(fullRoute, function funcInvokedAfterPOST(postInfo) {
       // this is the callback function which gets
       // called after the server is done serving the request
       // Before we can "refresh" to get the results,
       // we invoke a setTimeOut with a callback function
+      console.log ("Back from Server call: " + postInfo);
       window.setTimeout(function afterTimeOut(){
         // reloads and displays answer + previous answers
         // there must be a more efficient way of doing this
-        location = location;
+        // location = location;
         //location.reload(true);
-        //$('input').val('');
-        $("#query").val('');  // clear out the query text dialog
+        $.get("/responses", function (responses) {
+          $("ul#responses").empty();
+          responses.forEach(function(response) {
+            $('<li></li>').text(response).appendTo('ul#responses');
+          });
+          // $("#responses").html(data);  
+        });
+        // $('input').val('');
+        //$("#query").val('');  // clear out the query text dialog
         $("#query").focus();
       },1500);  // some arbitrary value - may not be sufficient
       
